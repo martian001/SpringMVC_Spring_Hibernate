@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<!-- 配置一个数据库连接以及属性的节点,如果有多个数据库,可以配置多个节点 -->
+	<session-factory>
+		<!-- 下面配置了很多hibernate,但是如果你不知道下面的key的拼写,那么请参照org.hibernate.cfg.Environment -->
+
+		<!-- oracle -->
+		<!-- <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property> 
+			<property name="connection.url">jdbc:oracle:thin:@localhost:1521:orcl</property> -->
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+
+		<!-- MySql -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/user</property>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+		<!-- H2 -->
+		<!-- <property name="connection.driver_class">org.h2.Driver</property> 
+			<property name="connection.url">jdbc:h2:tcp://localhost/~/hibernate</property> 
+			<property name="dialect">org.hibernate.dialect.H2Dialect</property> -->
+
+		<!-- SQL dialect 方言 非常重要,必须要配置,否则无法跨数据库 是跨数据库的核心配置 -->
+		<!-- <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property> -->
+		<!-- create 是每次启动的时候都是重新创建数据库和表 update 是发现属性文件有更新才有修改表结构,如果没有更新,则不改变数据库 -->
+		<property name="hbm2ddl.auto">update</property>
+		<property name="show_sql">true</property>
+
+		<!-- 定义了hibernate在启动的时候去加载相应的映射文件 -->
+
+		<mapping resource="com/et/bean/Student.hbm.xml" />
+
+	</session-factory>
+
+</hibernate-configuration>
